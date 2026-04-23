@@ -1,0 +1,131 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #080808;
+  --text: #adadad;
+  --text-dim: #3a3a3a;
+  --text-bright: #e0e0e0;
+  --text-input: #ffffff;
+  --accent: #555555;
+  --glitch: #ff3c3c;
+  --font: 'JetBrains Mono', 'Fira Mono', 'Courier New', monospace;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.6;
+  height: 100%;
+  overflow: hidden;
+}
+
+#terminal {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 1.5rem;
+}
+
+#output {
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+#output::-webkit-scrollbar {
+  display: none;
+}
+
+.line {
+  margin-bottom: 0.2rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.line-system {
+  color: var(--text-dim);
+}
+
+.line-input {
+  color: var(--text-bright);
+}
+
+.line-input::before {
+  content: '> ';
+  color: var(--accent);
+}
+
+.line-response {
+  color: var(--text);
+}
+
+.line-glitch {
+  color: var(--glitch);
+  animation: flicker 0.15s infinite alternate;
+}
+
+.line-spacer {
+  height: 0.6rem;
+}
+
+@keyframes flicker {
+  from { opacity: 1; }
+  to { opacity: 0.6; }
+}
+
+#input-row {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid var(--text-dim);
+  padding-top: 1rem;
+  margin-top: 1rem;
+  gap: 0.5rem;
+}
+
+#prompt-symbol {
+  color: var(--accent);
+  user-select: none;
+  flex-shrink: 0;
+}
+
+#user-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-input);
+  font-family: var(--font);
+  font-size: 14px;
+  flex: 1;
+  caret-color: var(--text-bright);
+}
+
+#user-input::placeholder {
+  color: var(--text-dim);
+}
+
+.thinking {
+  color: var(--text-dim);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.8; }
+}
+
+.stat-bar {
+  display: flex;
+  gap: 2rem;
+  color: var(--text-dim);
+  font-size: 11px;
+  margin-bottom: 2rem;
+  letter-spacing: 0.05em;
+}
